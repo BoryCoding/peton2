@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Details</title>
+  <link rel="stylesheet" href="/mypets.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/noticeboard">Noticeboard</a></li>
+        <li><a href="/trainers">Trainers</a></li>
+        <li><a href="/myinfo">My Info</a></li>
+        <li><a href="/dogencyclopedia">Dog Encyclopedia</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Pet Details</h1>
+  <div class="pet-details">
+    <h2><%= pet.pet_name %></h2>
+    <p><strong>Breed:</strong> <%= pet.pet_breed %></p>
+    <p><strong>Age:</strong> <%= pet.pet_age %></p>
+    <p><strong>Intro:</strong> <%= pet.pet_intro %></p>
+  </div>
+
+  <!-- Update form -->
+  <form action="<%= pet.pet_id %>" method="POST" class="update-form">
+    <h3>Update Pet Details</h3>
+    <label for="pet_name">Name:</label>
+    <input type="text" id="pet_name" name="pet_name" value="<%= pet.pet_name %>" required>
+    
+    <label for="pet_breed">Breed:</label>
+    <input type="text" id="pet_breed" name="pet_breed" value="<%= pet.pet_breed %>" required>
+    
+    <label for="pet_age">Age:</label>
+    <input type="text" id="pet_age" name="pet_age" value="<%= pet.pet_age %>" required>
+    
+    <label for="pet_intro">Intro:</label>
+    <input type="text" id="pet_intro" name="pet_intro" value="<%= pet.pet_intro %>" required>
+    
+    <button type="submit" class="btn">Update Pet</button>
+  </form>
+
+  <!-- Delete form -->
+  <form action="/deletepet/<%= pet.pet_id %>" method="POST" class="delete-form">
+    <button type="submit" class="btn">Delete Pet</button>
+  </form>
+
+  <button onclick="location.href='/mypets'" class="btn">Back to My Pets</button>
+</body>
+</html>

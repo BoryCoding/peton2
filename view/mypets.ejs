@@ -29,6 +29,7 @@
           <p><strong>Breed:</strong> <%= pets[i].pet_breed %></p>
           <p><strong>Age:</strong> <%= pets[i].pet_age %></p>
           <p><strong>Intro:</strong> <%= pets[i].pet_intro %></p>
+          <a href="/pet/<%= pets[i].pet_id %>" class="btn">View Details</a>
         </div>
       <% } %>
     <% } else { %>

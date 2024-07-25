@@ -11,27 +11,27 @@ exports.PW_find = (req, res) => {
 
 // 이메일로 코드 전송
 exports.sendCode = (req, res) => {
-    const { email } = req.body;
-    console.log('Received email for verification:', email);
+    const { email, login_id } = req.body;
+    console.log('Received email for verification:', email, login_id);
 
-    db.query('SELECT login_id FROM user WHERE email = ?', [email], (err, results) => {
+    db.query('SELECT login_id FROM user WHERE email = ? AND login_id = ?', [email, login_id], (err, results) => {
         if (err) {
             console.error('Database query error:', err);
-            return res.status(500).send('서버 오류가 발생했습니다.');
+            return res.status(500).send('서버 오류가 발생했습니다!!.');
         }
 
         if (results.length === 0) {
-            console.log('Email not found in database');
-            return res.status(404).send('이메일이 존재하지 않습니다.');
-        }
-
-        const code = crypto.randomBytes(3).toString('hex');
+            console.log('Email or login_id not found in database');
+            return res.status(404).send('이메일 또는 아이디가 존재하지 않습니다.');
+        } else {
+            const code = crypto.randomBytes(3).toString('hex');
         console.log('Generated verification code:', code);
 
         req.session.email = email;
         req.session.code = code;
         console.log('Stored email and code in session:', req.session);
 
+        
         const transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
@@ -56,6 +56,9 @@ exports.sendCode = (req, res) => {
             console.log('Email sent successfully:', info.response);
             res.render('userfind/PW_find', { email: email, passwordUpdated: null });
         });
+        }
+
+        
     });
 };
 

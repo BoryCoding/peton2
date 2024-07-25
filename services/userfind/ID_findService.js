@@ -81,8 +81,7 @@ exports.verifyCode = (req, res) => {
             return res.status(404).send('사용자를 찾을 수 없습니다.');
         }
 
-        const login_id = results[0].login_id;
-        console.log('User login_id:', login_id);
-        res.render('userfind/ID_find', { email: null, login_id: login_id });
+        console.log('User login_id:', results);
+        res.render('userfind/ID_find', { email: null, login_id: results });
     });
 };

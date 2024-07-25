@@ -33,7 +33,7 @@ exports.updateMyInfo = (req, res) => {
       console.error("내 정보 수정 중 에러 발생: ", err);
       return res.status(500).send('서버 에러');
     }
-          res.send('<script>alert("정보 수정 성공!"); window.location.href = "/myinfo";</script>');
+          res.send('<script>alert("정보 수정 성공!"); window.location.href = "/";</script>');
         });
       }
    
@@ -66,7 +66,7 @@ exports.addpet = (req, res) => {
   });
 };
 
-exports.addpets = (req, res) => {
+exports.mypets = (req, res) => {
   const userId = req.session.userid;
   console.log('Fetching pets for user:', userId);
 
@@ -84,5 +84,59 @@ exports.addpets = (req, res) => {
 
     console.log('Fetched pets:', results);
     res.render('mypets', { pets: results });
+  });
+};
+
+exports.petdetail = (req, res) => {
+  const petId = req.params.pet_id;
+  const query = 'SELECT * FROM pet WHERE pet_id = ?';
+  db.query(query, [petId], (err, results) => {
+    if (err) {
+      console.error("반려동물 정보 조회 중 에러 발생: ", err);
+      return res.status(500).send('서버 에러');
+    }
+
+    if (results.length > 0) {
+      res.render('petdetail', { pet: results[0] });
+    } else {
+      res.status(404).send('반려동물 정보를 찾을 수 없습니다.');
+    }
+  });
+};
+
+//   // 데이터베이스에서 반려동물의 상세 정보 가져오기
+//   const query = 'SELECT * FROM pet WHERE pet_id = ?';
+//   db.query(query, [petId], (err, results) => {
+//     if (err) {
+//       console.error('Database query error:', err);
+//       return res.status(500).send('서버 오류가 발생했습니다.');
+//     }
+
+//     if (results.length > 0) {
+//       res.render('petdetails', { pet: results[0] });
+//     } else {
+//       res.status(404).send('반려동물을 찾을 수 없습니다.');
+//     }
+//  });
+
+// };
+
+exports.updatepetdetail = (req,res) => {
+  const petId = req.params.pet_id;
+  const { pet_name, pet_breed, pet_age, pet_intro } = req.body;
+
+
+  const query = `
+  UPDATE pet
+    SET pet_name = ?, pet_breed = ?, pet_age = ?, pet_intro = ?
+    WHERE pet_id = ?
+  `;
+
+  db.query(query, [pet_name, pet_breed, pet_age, pet_intro, petId], (err, results) => {
+    if (err) {
+      console.error('Database update error:', err);
+      return res.status(500).send('서버 오류가 발생했습니다.');
+    }
+    res.redirect('/mypets');
   });
 };

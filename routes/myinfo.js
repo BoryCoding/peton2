@@ -7,6 +7,8 @@ router.get('/myinfo', isAuthenticated, myinfoService.getMyInfo);
 router.post('/updatemyinfo', isAuthenticated, myinfoService.updateMyInfo);
 router.get('/addpet', isAuthenticated, myinfoService.renderaddpet);
 router.post('/addpet', isAuthenticated, myinfoService.addpet);
-router.get('/mypets', isAuthenticated, myinfoService.addpets);
+router.get('/mypets', isAuthenticated, myinfoService.mypets);
 
+router.get('/pet/:pet_id', isAuthenticated, myinfoService.petdetail);
+router.post('/pet/:pet_id', isAuthenticated, myinfoService.updatepetdetail);
 module.exports = router;
