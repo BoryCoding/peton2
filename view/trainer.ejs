@@ -1,0 +1,43 @@
+<!-- trainer.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers Page</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/noticeboard">noticeboard</a></li>
+                <li><a href="/trainers">Trainers</a></li>
+                <li><a href="/myinfo">My Info</a></li>
+                <li><a href="/dogencyclopedia">Dog Encyclopedia</a></li>
+                
+                
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Trainers Page</h1>
+
+    <div class="content">
+        <h2>Trainers</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+            </tr>
+            <% trainers.forEach((trainer) => { %>
+                <tr>
+                    <td><%= trainer.name %></td>
+                </tr>
+            <% }); %>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반려동물 등록</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="join">반려동물 등록</h2>
+        <form action="/createpet" method="post">
+            <input type="hidden" name="user_id" value="<%= user_id %>">
+            <table>
+                <tr>
+                    <td>반려동물 이름:</td>
+                    <td><input type="text" name="pet_name" required></td>
+                </tr>
+                <tr>    
+                    <td>반려동물 품종:</td>
+                    <td><input type="text" name="pet_breed" required></td>
+                </tr>
+                <tr>
+                    <td>반려동물 나이:</td>
+                    <td><input type="number" name="pet_age" required></td>
+                </tr>
+                <tr>
+                    <td>반려동물 소개:</td>
+                    <td><input type="text" name="pet_intro"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="join"><button type="submit" class="btn">등록</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

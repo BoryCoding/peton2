@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Pets</title>
+  <link rel="stylesheet" href="/mypets.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/noticeboard">Noticeboard</a></li>
+        <li><a href="/trainers">Trainers</a></li>
+        <li><a href="/myinfo">My Info</a></li>
+        <li><a href="/dogencyclopedia">Dog Encyclopedia</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <h1>My Pets</h1>
+  <div class="pet-container">
+    <% if (pets.length > 0) { %>
+      <% for (let i = 0; i < pets.length; i++) { %>
+        <div class="pet-card">
+          <h2>Pet <%= i + 1 %></h2>
+          <p><strong>Name:</strong> <%= pets[i].pet_name %></p>
+          <p><strong>Breed:</strong> <%= pets[i].pet_breed %></p>
+          <p><strong>Age:</strong> <%= pets[i].pet_age %></p>
+          <p><strong>Intro:</strong> <%= pets[i].pet_intro %></p>
+        </div>
+      <% } %>
+    <% } else { %>
+      <p>No pets found.</p>
+    <% } %>
+  </div>
+  
+  <button onclick="location.href='/myinfo'" class="btn">Back to My Info</button>
+</body>
+</html>

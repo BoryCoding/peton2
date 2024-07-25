@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Encyclopedia Page</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/noticeboard">Noticeboard</a></li>
+        <li><a href="/trainers">Trainers</a></li>
+        <li><a href="/myinfo">My Info</a></li>
+        <li><a href="/dogencyclopedia">Dog Encyclopedia</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <h1>Dog Encyclopedia Page</h1>
+
+  <div class="content">
+    <h2>Dog Encyclopedia</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+      </tr>
+      <!-- dogEncyclopedias 배열을 반복하여 각 강아지의 정보를 테이블에 추가합니다. -->
+      <% dogEncyclopedias.forEach((dog) => { %>
+        <tr>
+          <td><%= dog.name %></td>
+          <td><img src="<%= dog.image %>" alt="<%= dog.name %>" style="width: 100px;"></td>
+        </tr>
+      <% }); %>
+    </table>
+  </div>
+</body>
+</html>

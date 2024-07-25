@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Info</title>
+  <link rel="stylesheet" href="/myinfo.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/noticeboard">Noticeboard</a></li>
+        <li><a href="/trainers">Trainers</a></li>
+        <li><a href="/myinfo">My Info</a></li>
+        <li><a href="/dogencyclopedia">Dog Encyclopedia</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1>My Info</h1>
+  <% if (myInfos.length > 0) { %>
+    <form action="/updatemyinfo" method="post">
+      <input type="hidden" name="user_id" value="<%= myInfos[0].user_id %>">
+      <table>
+        <tr>
+          <td>Login ID:</td>
+          <td><input type="text" name="login_id" value="<%= myInfos[0].login_id %>" readonly></td>
+        </tr>
+        <tr>
+          <td>Nickname:</td>
+          <td><input type="text" name="nick_name" value="<%= myInfos[0].nick_name %>"></td>
+        </tr>
+        <tr>
+          <td>User Intro:</td>
+          <td><input type="text" name="user_intro" value="<%= myInfos[0].user_intro %>"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button type="submit" class="btn">Update User</button></td>
+        </tr>
+      </table>
+    </form>
+    <% } %>
+  <form action="/addpet">
+      <button type="submit" class="btn">Add Pet</button>
+    
+  </form>
+    
+</body>
+</html>
+ 

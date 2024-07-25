@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기</title>
+    <link rel="stylesheet" href="ID_find.css">
+</head>
+<body>
+    <div class="container">
+        <h1>비밀번호 찾기</h1>
+
+        <!-- 이메일 입력 폼 -->
+        <% if (!email && !passwordUpdated) { %>
+            <form id="emailForm" action="PW_find" method="POST">
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email" required>
+                <button type="submit">코드 전송</button>
+            </form>
+        <% } %>
+
+        <!-- 인증 코드 및 새 비밀번호 입력 폼 -->
+        <% if (email && !passwordUpdated) { %>
+            <form id="codeForm" action="verifyPW" method="POST">
+                <input type="hidden" name="email" value="<%= email %>">
+                <label for="code">인증 코드:</label>
+                <input type="text" id="code" name="code" required>
+                <label for="newPassword">새 비밀번호:</label>
+                <input type="password" id="newPassword" name="newPassword" required>
+                <label for="confirmPassword">새 비밀번호 확인:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <button type="submit">비밀번호 변경</button>
+            </form>
+        <% } %>
+
+        <!-- 비밀번호 업데이트 완료 -->
+            <% if (passwordUpdated) { %>
+                <p>비밀번호가 성공적으로 변경되었습니다.</p>
+                <button onclick="location.href='/login'" class="btn">로그인 페이지로 이동</button>
+            <% } %>
+        </div>
+    </body>
+    </html>
