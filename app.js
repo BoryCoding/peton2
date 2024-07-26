@@ -6,7 +6,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const app = express();
 const port = 3000;
-
+const ip = require('ip');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,8 +48,8 @@ app.use('/', dogencyclopediaRouter);
 // app.use('/', userfindRouter);
 
 
-app.listen(port, () => {
-  console.log(`서버가 포트 ${port}에서 실행 중입니다`);
+app.listen(port, '192.168.147.1', () => {
+  console.log(`Server running at http://192.168.147.1:${port}/`);
 });
 
 
