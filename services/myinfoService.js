@@ -33,7 +33,7 @@ exports.updateMyInfo = (req, res) => {
       console.error("내 정보 수정 중 에러 발생: ", err);
       return res.status(500).send('서버 에러');
     }
-          res.send('<script>alert("정보 수정 성공!"); window.location.href = "/";</script>');
+          res.send('<script>alert("정보 수정 성공!"); window.location.href = "/myinfo";</script>');
         });
       }
    
@@ -43,7 +43,7 @@ exports.renderaddpet = (req, res) => {
   res.render('addpet'); // 'addpet' 템플릿을 렌더링
 };
 
-exports.addpet = (req, res) => {
+exports.updateaddpet = (req, res) => {
   console.log('Adding pet:', req.body);
 
   const { pet_name, pet_breed, pet_age, pet_intro } = req.body;

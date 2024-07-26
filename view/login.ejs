@@ -13,13 +13,13 @@
         <td><h2>로그인</h2></td>
     </tr>
     <tr>
-        <td><input type="text" placeholder="ID" name="login_id"></td>
+        <td><input type="text" placeholder="ID" name="login_id" value="<%= rememberedLoginId || '' %>"></td>
     </tr>
     <tr>
         <td><input type="password" placeholder=Password name="password"></td>
     </tr>
     <tr>
-       <td><input type="checkbox"> 로그인 정보 저장</td>
+       <td><input type="checkbox" name="rememberMe"> 로그인 정보 저장</td>
     </tr>
     <tr>
         <td><input type="submit" value="Sign in" class="btn"></td>

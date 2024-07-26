@@ -2,7 +2,7 @@ const db = require('../db');
 const bcrypt = require('bcrypt');
 
 exports.login = (req, res) => {
-  const { login_id, password } = req.body;
+  const { login_id, password, rememberMe} = req.body;
   const query = 'SELECT * FROM user WHERE login_id = ?';
 
   db.query(query, [login_id], async (err, results) => {
@@ -30,6 +30,13 @@ exports.login = (req, res) => {
 
       req.session.userid = user.user_id; // 세션에 user_id 저장
       req.session.login_id = login_id;
+
+      if (rememberMe) {
+        console.log(rememberMe, '시발 !!');
+        res.cookie('rememberMe', login_id, { maxAge: 30 * 24 * 60 * 60 * 1000 }); // 30일 동안 쿠키 저장
+      } else {
+        res.clearCookie('rememberMe');
+      }
 
       console.log("로그인 성공");
       res.send('<script>alert("로그인 성공."); window.location.href = "/";</script>');

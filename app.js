@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const app = express();
@@ -10,6 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(express.static('public'));
 app.use(session({
   secret: 'keyboard cat',
@@ -31,6 +33,7 @@ const myinfoRouter = require('./routes/myinfo');
 const dogencyclopediaRouter = require('./routes/dogencyclopedia');
 const ID_findRouter = require('./routes/userfind/ID_find');
 const PW_findRouter = require('./routes/userfind/PW_find');
+
 // const userfind = require('./routes/userfind');
 
 app.use('/', PW_findRouter);
