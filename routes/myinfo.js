@@ -8,7 +8,10 @@ router.post('/updatemyinfo', isAuthenticated, myinfoService.updateMyInfo);
 router.get('/addpet', isAuthenticated, myinfoService.renderaddpet);
 router.post('/addpet', isAuthenticated, myinfoService.updateaddpet);
 router.get('/mypets', isAuthenticated, myinfoService.mypets);
+router.get('/deleteuser', isAuthenticated, myinfoService.deleteuser);
 
 router.get('/pet/:pet_id', isAuthenticated, myinfoService.petdetail);
 router.post('/pet/:pet_id', isAuthenticated, myinfoService.updatepetdetail);
+router.post('/deletepet/:pet_id', isAuthenticated, myinfoService.deletepetdetail);
+
 module.exports = router;

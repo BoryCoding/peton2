@@ -1,3 +1,4 @@
+const { log } = require('console');
 const db = require('../db');
 
 exports.getMyInfo = (req, res) => {
@@ -138,5 +139,48 @@ exports.updatepetdetail = (req,res) => {
       return res.status(500).send('서버 오류가 발생했습니다.');
     }
     res.redirect('/mypets');
+  });
+};
+
+exports.deletepetdetail = (req,res) => {
+  const petId = req.params.pet_id;
+  
+  const query = `DELETE FROM pet WHERE pet_id = ?`;
+
+  db.query(query, [petId], (err,result) => {
+    console.log('ㅅㅄㅄㅄㅂ',result);
+    if(err){
+      console.err('err deleteing pet',err);
+    return res.status(500).send('server error');
+    }
+
+    console.log('pet deleted successfully:', result);
+    res.send('<script>alert("반려동물이 성공적으로 삭제되었습니다."); window.location.href = "/mypets";</script>');
+  });
+}
+
+
+exports.deleteuser = (req, res) => {
+  const userId = req.session.userid;
+  const petquery = 'DELETE FROM pet WHERE user_id = ?';
+  const userquery = 'DELETE FROM user WHERE user_id = ?';
+
+  db.query(petquery, [userId], (err, result) => {
+    if (err) {
+      console.error('Error deleting pets:', err);
+      return res.status(500).send('Server error deleting pets');
+    }
+
+    console.log('Pets deleted successfully:', result);
+
+    db.query(userquery, [userId], (err, result) => {
+      if (err) {
+        console.error('Error deleting user:', err);
+        return res.status(500).send('Server error deleting user');
+      }
+
+      console.log('User deleted successfully:', result);
+      res.send('<script>alert("회원이 성공적으로 삭제되었습니다."); window.location.href = "/login";</script>');
+    });
   });
 };

@@ -28,6 +28,8 @@ exports.login = (req, res) => {
         return;
       }
 
+      
+
       req.session.userid = user.user_id; // 세션에 user_id 저장
       req.session.login_id = login_id;
 
@@ -43,7 +45,7 @@ exports.login = (req, res) => {
     } catch (error) {
       console.error("비밀번호 비교 중 에러 발생: ", error);
       res.status(500).send('서버 에러');
-    }
+    } 
   });
 };
 
