@@ -48,8 +48,8 @@ app.use('/', dogencyclopediaRouter);
 // app.use('/', userfindRouter);
 
 
-app.listen(port, '192.168.147.1', () => {
-  console.log(`Server running at http://192.168.147.1:${port}/`);
+app.listen(port, '192.168.75.153', () => {
+  console.log(`Server running at 192.168.75.153:${port}/`);
 });
 
 

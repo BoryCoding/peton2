@@ -40,19 +40,19 @@ exports.updateMyInfo = (req, res) => {
    
 
 exports.renderaddpet = (req, res) => {
-  console.log('Rendering Add Pet page');
+  // console.log('Rendering Add Pet page');
   res.render('addpet'); // 'addpet' 템플릿을 렌더링
 };
 
 exports.updateaddpet = (req, res) => {
-  console.log('Adding pet:', req.body);
+  // console.log('Adding pet:', req.body);
 
   const { pet_name, pet_breed, pet_age, pet_intro } = req.body;
   const userId = req.session.userid;
   console.log('세션에서 가져온 userId:', userId);
 
   if (!userId) {
-    console.log(userIdx);
+    // console.log(userIdx);
     return res.status(400).send('사용자 정보가 없습니다. 로그인 후 다시 시도해주세요.');
   }
 
@@ -62,14 +62,14 @@ exports.updateaddpet = (req, res) => {
       return res.status(500).send('서버 오류가 발생했습니다.');
     }
 
-    console.log('Pet added successfully');
+    // console.log('Pet added successfully');
     res.redirect('/myinfo');
   });
 };
 
 exports.mypets = (req, res) => {
   const userId = req.session.userid;
-  console.log('Fetching pets for user:', userId);
+  // console.log('Fetching pets for user:', userId);
 
   if (!userId) {
     console.log(userId);
@@ -83,7 +83,7 @@ exports.mypets = (req, res) => {
       return res.status(500).send('서버 오류가 발생했습니다.');
     }
 
-    console.log('Fetched pets:', results);
+    // console.log('Fetched pets:', results);
     res.render('mypets', { pets: results });
   });
 };
@@ -154,7 +154,7 @@ exports.deletepetdetail = (req,res) => {
     return res.status(500).send('server error');
     }
 
-    console.log('pet deleted successfully:', result);
+    // console.log('pet deleted successfully:', result);
     res.send('<script>alert("반려동물이 성공적으로 삭제되었습니다."); window.location.href = "/mypets";</script>');
   });
 }
@@ -171,7 +171,7 @@ exports.deleteuser = (req, res) => {
       return res.status(500).send('Server error deleting pets');
     }
 
-    console.log('Pets deleted successfully:', result);
+    // console.log('Pets deleted successfully:', result);
 
     db.query(userquery, [userId], (err, result) => {
       if (err) {
@@ -179,7 +179,7 @@ exports.deleteuser = (req, res) => {
         return res.status(500).send('Server error deleting user');
       }
 
-      console.log('User deleted successfully:', result);
+      // console.log('User deleted successfully:', result);
       res.send('<script>alert("회원이 성공적으로 삭제되었습니다."); window.location.href = "/login";</script>');
     });
   });

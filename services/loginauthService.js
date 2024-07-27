@@ -13,7 +13,7 @@ exports.login = (req, res) => {
     }
 
     if (results.length === 0) {
-      console.log("로그인 실패: 아이디 또는 패스워드가 틀렸습니다.");
+      // console.log("로그인 실패: 아이디 또는 패스워드가 틀렸습니다.");
       res.send('<script>alert("아이디 또는 패스워드가 틀렸습니다."); window.location.href = "/login";</script>');
       return;
     }
@@ -23,7 +23,7 @@ exports.login = (req, res) => {
     try {
       const isMatch = await bcrypt.compare(password, user.password);
       if (!isMatch) {
-        console.log("로그인 실패: 아이디 또는 패스워드가 틀렸습니다.");
+        // console.log("로그인 실패: 아이디 또는 패스워드가 틀렸습니다.");
         res.send('<script>alert("아이디 또는 패스워드가 틀렸습니다."); window.location.href = "/login";</script>');
         return;
       }
