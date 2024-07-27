@@ -6,7 +6,7 @@ const noticeboardService = require('../services/noticeboardService');
 router.get('/noticeboard', noticeboardService.getNoticeboard);
 
 // GET 요청: 게시글 작성 폼을 렌더링
-router.get('/noticeboard/form', (req, res) => {
+router.get('/noticeboard/form',isAuthenticated, (req, res) => {
     res.render('noticeboard/form'); // 작성 폼 렌더링
 });
 

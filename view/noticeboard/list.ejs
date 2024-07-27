@@ -35,7 +35,14 @@
                     <tr>
                         <td><%= post.nick_name %></td>
                         <td><%= post.title %></td>
-                        <td><%= post.description %></td>
+                        <td>
+                            <script>
+                            function truncateText(text, maxLength) {
+                                return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+                            }
+                            document.write(truncateText('<%= post.description %>', 10));
+                            </script>
+                        </td>
                         <td><%= new Date(post.write_time).toLocaleString() %></td>
                         <td><%= new Date(post.update_time).toLocaleString() %></td>
                     </tr>

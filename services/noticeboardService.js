@@ -1,11 +1,6 @@
 const db = require('../db');
 
 exports.getNoticeboard = (req, res) => {
-    // 로그인된 사용자의 login_id 가져오기
-    const login_id = req.session.login_id;
-    // 로그인된 사용자의 login_id를 콘솔에 출력
-    console.log("로그인된 사용자 ID: ", login_id);
-
   db.query('SELECT * FROM noticeboard', (err, results) => {
     if (err) {
       console.error("게시판 조회 중 에러 발생: ", err);
