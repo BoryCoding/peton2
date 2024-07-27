@@ -40,7 +40,7 @@ exports.login = (req, res) => {
         res.clearCookie('rememberMe');
       }
 
-      console.log("로그인 성공");
+      // console.log("로그인 성공");
       res.send('<script>alert("로그인 성공."); window.location.href = "/";</script>');
     } catch (error) {
       console.error("비밀번호 비교 중 에러 발생: ", error);
